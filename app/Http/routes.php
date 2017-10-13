@@ -11,10 +11,24 @@
 |
 */
 
+//Route::get('/', function () {
+//if(Auth::check()){
+    //return "the user is logged in";
+	//$user = Auth::user();
+	//if($user->isAdmin()){
+		//echo "this user is an administrator";
+	//}
+//}
+//});
+
 Route::get('/', function () {
-if(Auth::check()){
-    return "the user is logged in";
-}
+//if(Auth::check()){
+    //return "the user is logged in";
+	$user = Auth::user();
+	if($user->isAdmin()){
+		echo "this user is an administrator";
+	}
+//}
 });
 
 Route::auth();
@@ -24,3 +38,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/admin/user/roles', ['middleware'=>'role', function(){
 	return "Middleware role";
 }]);
+
+Route::get('/admin', 'AdminController@index');
